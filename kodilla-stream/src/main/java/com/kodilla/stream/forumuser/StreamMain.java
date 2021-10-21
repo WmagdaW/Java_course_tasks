@@ -9,9 +9,15 @@ public class StreamMain {
         Forum theForum = new Forum();
         Map <Integer, ForumUser> theResultMapOfForumUsers= theForum.getUserList().stream()
                 .filter(forumUser -> forumUser.getSex() == 'M')
-                .filter (forumUser -> forumUser.getDateOfBirth().getYear() <= 2001)
+                .filter (forumUser -> forumUser.getDateOfBirth().getYear() < 2001)
+                .filter (forumUser -> forumUser.getDateOfBirth().getYear() == 2001 && forumUser.getDateOfBirth().getMonthValue() < 10)
+                .filter (forumUser -> forumUser.getDateOfBirth().getYear() == 2001 && forumUser.getDateOfBirth().getMonthValue() == 10 && forumUser.getDateOfBirth().getDayOfMonth() <= 20)
                 .filter (forumUser -> forumUser.getPostNo() > 0)
                 .collect(Collectors.toMap(ForumUser::getUserID, forumUser -> forumUser));
+
+
+
+
 
         theResultMapOfForumUsers.entrySet().stream()
                 .map(entry -> entry.getKey() + ":" + entry.getValue())

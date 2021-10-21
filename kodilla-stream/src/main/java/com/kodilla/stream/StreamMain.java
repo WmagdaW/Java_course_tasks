@@ -1,7 +1,7 @@
 package com.kodilla.stream;
 import com.kodilla.stream.beautifier.PoemBeautifier;
 
-import static com.sun.tools.javac.util.StringUtils.toUpperCase;
+
 
 
 public class StreamMain {

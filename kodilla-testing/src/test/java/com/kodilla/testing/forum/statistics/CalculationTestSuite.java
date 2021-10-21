@@ -1,5 +1,6 @@
 package com.kodilla.testing.forum.statistics;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -16,13 +17,15 @@ import static org.mockito.Mockito.when;
 public class CalculationTestSuite {
     @Mock
     private Statistics statisticsMock;
-
-
+    private Calculation calculation;
+    @BeforeEach
+    public void init() {
+       calculation = new Calculation(statisticsMock);
+    }
     @Test
     void testCalculateAdvStatistics0Posts() {
         //Given
-        Statistics statistics = mock(Statistics.class);
-        Calculation calculation = new Calculation(statisticsMock);
+
         when(statisticsMock.postsCount()).thenReturn(0);
 
         //When
@@ -45,8 +48,7 @@ public class CalculationTestSuite {
     void testCalculateAdvStatistics1000Posts() {
 
         //Given
-        Statistics statistics = mock(Statistics.class);
-        Calculation calculation = new Calculation(statisticsMock);
+
         when(statisticsMock.postsCount()).thenReturn(1000);
         List <String> listOfUsers = generateUserList(10);
         when(statisticsMock.usersNames()).thenReturn(listOfUsers);
