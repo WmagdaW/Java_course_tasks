@@ -7,8 +7,13 @@ public class Application {
 
         FlightService flightService = new FlightService(new FlightRoutes());
 
-        flightService.flightsFrom("WAW");
-        flightService.flightsTo("POZ");
-        flightService.listFlights("WAW", "POZ");
+        var result1 = flightService.flightsFrom("WAW");
+        var result2 = flightService.flightsTo("POZ");
+        var result3 = flightService.listFlights("NYC", "POZ");
+
+
+        System.out.println (result1);
+        System.out.println (result2);
+        System.out.println (result3);
     }
 }

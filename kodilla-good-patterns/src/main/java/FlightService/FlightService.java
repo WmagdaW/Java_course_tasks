@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class FlightService {
 
-    FlightRoutes flightRoutes;
+    private final FlightRoutes flightRoutes;
 
     public FlightService(FlightRoutes flightRoutes) {
         this.flightRoutes = flightRoutes;
@@ -29,7 +29,7 @@ public class FlightService {
         Set<Flight> to = flightsTo (arrivals);
         Set<Set<Flight>> flights = new HashSet<>();
         from.stream()
-                .filter(flight -> to.contains(new Flight(flight.getArrivals(),arrivals)))
+                .filter(flight -> to.contains(new Flight(arrivals, flight.getArrivals())))
                 .forEach(flight -> flights.add(Set.of(flight,new Flight(flight.getArrivals(),arrivals))));
         return flights;
     }
