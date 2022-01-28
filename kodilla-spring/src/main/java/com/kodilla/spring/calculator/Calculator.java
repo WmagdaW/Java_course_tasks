@@ -1,8 +1,6 @@
 package com.kodilla.spring.calculator;
 
-import com.kodilla.spring.library.LibraryDbController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,5 +31,4 @@ public final class Calculator {
         display.displayValue(resultDiv);
         return resultDiv;
     }
-
 }
