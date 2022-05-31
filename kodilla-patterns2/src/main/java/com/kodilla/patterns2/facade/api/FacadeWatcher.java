@@ -11,19 +11,19 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class Watcher {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Watcher.class);
+public class FacadeWatcher {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FacadeWatcher.class);
 
     @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
     public void logEvent() {
         LOGGER.info("Logging the event");
     }
 
-//    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))" +
-//            "&& args(order, userId) && target(object)")
-//    public void logEvent(OrderDto order, Long userId, Object object)  {
-//        LOGGER.info("Class: " + object.getClass().getName() + ", Args: " + order + " " + userId);
-//    }
+    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))" +
+            "&& args(order, userId) && target(object)")
+    public void logEvent(OrderDto order, Long userId, Object object)  {
+        LOGGER.info("Class: " + object.getClass().getName() + ", Args: " + order + " " + userId);
+    }
 
     @Around("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
     public Object measureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
