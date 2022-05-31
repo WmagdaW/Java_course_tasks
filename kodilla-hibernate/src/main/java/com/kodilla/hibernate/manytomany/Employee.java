@@ -7,6 +7,12 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Employee.searchEmployeeByNameFragment",
+        query = "SELECT * FROM EMPLOYEES WHERE LASTNAME LIKE CONCAT('%', :LASTNAME , '%')",
+        resultClass = Employee.class
+)
+
 @NamedQuery(
         name = "Employee.retrieveEmployeesWithGivenLastname",
         query = "FROM Employee WHERE lastname = :LASTNAME"

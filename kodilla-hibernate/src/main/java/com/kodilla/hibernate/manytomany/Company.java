@@ -8,6 +8,12 @@ import java.util.List;
 //import javax.validation.constraints.NotNull;
 
 @NamedNativeQuery(
+        name = "Company.searchCompanyByNameFragment",
+        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE CONCAT('%', :LETTERS , '%')",
+        resultClass = Company.class
+)
+
+@NamedNativeQuery(
         name = "Company.retrieveCompaniesWhichStartWithGivenLetters",
         query = "SELECT * FROM COMPANIES" +
                 " WHERE COMPANY_NAME LIKE CONCAT(:LETTERS, '%')",
